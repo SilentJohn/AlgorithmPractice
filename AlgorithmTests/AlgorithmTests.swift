@@ -31,8 +31,22 @@ class AlgorithmTests: XCTestCase {
         }
     }
     
-    func testLinkedList() {
-        let _ = [1, 2, 3]
-        XCTAssert(true)
+    var linkedList: LinkedList<Int>?
+    
+    func testLinkedListCreate() {
+        linkedList = [1, 2, 3]
+        XCTAssertNotNil(linkedList, "链表初始化失败")
+    }
+    
+    func testLinkedListCreateWithEmptyArray() {
+        linkedList = []
+        XCTAssert(linkedList!.isEmpty, "链表应该没有数据")
+    }
+    
+    func testLinkedListRemoveNode() {
+        linkedList = [1, 2, 3, 4, 5]
+        XCTAssertNotNil(linkedList, "链表初始化失败")
+        linkedList?.remove(at: 1)
+        XCTAssert(linkedList![1].value == 3, "删除节点失败")
     }
 }

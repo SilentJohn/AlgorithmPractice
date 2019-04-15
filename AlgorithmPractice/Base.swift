@@ -57,11 +57,7 @@ public class LinkedList<Element>: ExpressibleByArrayLiteral {
 
 // MARK: - 基本操作
 extension LinkedList {
-    func append(_ element: Element) {
-        append(Node(element))
-    }
-    
-    fileprivate func append(_ node: Node<Element>) {
+    func append(_ node: Node<Element>) {
         guard head != nil else {
             head = node
             tail = self.head
@@ -72,9 +68,10 @@ extension LinkedList {
         tail = node
     }
     
-    fileprivate func remove(_ node: Node<Element>) {
+    @discardableResult
+    func remove(at index: Int) -> Bool {
         guard head != nil else {
-            return
+            return false
         }
         // 分情况讨论
 //        if node === head {
@@ -88,8 +85,10 @@ extension LinkedList {
 //            node.next?.pre = node.pre
 //        }
         // 统一处理，待测试
+        let node = self[index]
         node.pre?.next = node.next
         node.next?.pre = node.pre
+        return true
     }
 }
 
@@ -135,19 +134,19 @@ extension LinkedList: Collection {
         return i + 1
     }
     
-    public subscript(position: Int) -> Element {
+    public subscript(position: Int) -> Node<Element> {
         let direction = position < count / 2
         var current = direction ? head : tail, index = direction ? startIndex : endIndex
         while position != index {
             index += direction ? 1 : -1
             current = direction ? current?.next : current?.pre
         }
-        return current!.value
+        return current!
     }
 }
 
 extension LinkedList: CustomStringConvertible where Element: CustomStringConvertible{
     public var description: String {
-        return reduce("", { $0 + "->" + $1.description })
+        return reduce("", { $0 + "->" + $1.value.description })
     }
 }
