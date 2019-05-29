@@ -69,4 +69,9 @@ class AlgorithmTests: XCTestCase {
         let ret_2: Int = obj.peek()
         XCTAssert(ret_2 == 1)
     }
+    
+    func testNumFriendRequests() {
+        XCTAssert(solution.numFriendRequests([20, 30, 100, 110, 120]) == 3)
+        XCTAssert(solution.numFriendRequests([16, 17, 18]) == 2)
+    }
 }
