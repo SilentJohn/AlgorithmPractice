@@ -143,8 +143,24 @@ class Solution {
      0 <= grumpy[i] <= 1
      */
     func maxSatisfied(_ customers: [Int], _ grumpy: [Int], _ X: Int) -> Int {
-        for i in customers {
-            <#code#>
+        let n = customers.count
+        var max = 0, cur = 0
+        for i in 0 ..< n {
+            if i < X || grumpy[i] == 0 {
+                cur += customers[i]
+            }
         }
+        max = cur
+        if n <= X {
+            return max
+        }
+        for i in 1 ... n - X {
+            let left = i, right = i + X - 1
+            cur += (grumpy[left - 1] == 1 ? -customers[left - 1] : 0) + (grumpy[right] == 1 ? customers[right] : 0)
+            if cur > max {
+                max = cur
+            }
+        }
+        return max
     }
 }

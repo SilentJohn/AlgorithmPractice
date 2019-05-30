@@ -74,4 +74,11 @@ class AlgorithmTests: XCTestCase {
         XCTAssert(solution.numFriendRequests([20, 30, 100, 110, 120]) == 3)
         XCTAssert(solution.numFriendRequests([16, 17, 18]) == 2)
     }
+    
+    func testMaxSatisfied() {
+        XCTAssert(solution.maxSatisfied([1, 0, 1, 2, 1, 1, 7, 5], [0, 1, 0, 1, 0, 1, 0, 1], 3) == 16)
+        XCTAssert(solution.maxSatisfied([4, 10, 10], [1, 1, 0], 2) == 24)
+        XCTAssert(solution.maxSatisfied([1], [0], 1) == 1)
+        XCTAssert(solution.maxSatisfied([2, 6, 6, 9], [0, 0, 1, 1], 1) == 17)
+    }
 }
