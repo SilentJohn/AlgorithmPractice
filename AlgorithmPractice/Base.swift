@@ -74,16 +74,16 @@ extension LinkedList {
             return false
         }
         // 分情况讨论
-//        if node === head {
-//            node.pre = nil
-//            head = node.next
-//        } else if node === tail {
-//            node.next = nil
-//            tail = node
-//        } else {
-//            node.pre?.next = node.next
-//            node.next?.pre = node.pre
-//        }
+        //        if node === head {
+        //            node.pre = nil
+        //            head = node.next
+        //        } else if node === tail {
+        //            node.next = nil
+        //            tail = node
+        //        } else {
+        //            node.pre?.next = node.next
+        //            node.next?.pre = node.pre
+        //        }
         // 统一处理，待测试
         let node = self[index]
         node.pre?.next = node.next
@@ -148,5 +148,17 @@ extension LinkedList: Collection {
 extension LinkedList: CustomStringConvertible where Element: CustomStringConvertible{
     public var description: String {
         return reduce("", { $0 + "->" + $1.value.description })
+    }
+}
+
+/// 树的节点定义
+public class TreeNode {
+    public var val: Int
+    public var left: TreeNode?
+    public var right: TreeNode?
+    public init(_ val: Int) {
+        self.val = val
+        self.left = nil
+        self.right = nil
     }
 }
