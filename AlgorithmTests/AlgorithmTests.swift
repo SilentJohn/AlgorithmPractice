@@ -87,4 +87,8 @@ class AlgorithmTests: XCTestCase {
                                                   [9,5,1,9],
                                                   [2,7,6,2]]) == 1)
     }
+    
+    func testTotalHammingDistance() {
+        XCTAssert(solution.totalHammingDistance([4, 14, 2]) == 6)
+    }
 }

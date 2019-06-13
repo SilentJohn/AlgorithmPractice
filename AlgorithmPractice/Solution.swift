@@ -251,4 +251,66 @@ class Solution {
         }
         return count
     }
+    
+    /**
+     LeetCode 477. Total Hamming Distance
+     The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+     
+     Now your job is to find the total Hamming distance between all pairs of the given numbers.
+     
+     Example:
+     
+     Input: 4, 14, 2
+     
+     Output: 6
+     
+     Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just
+     showing the four bits relevant in this case). So the answer will be:
+     HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
+     Note:
+     
+     Elements of the given array are in the range of 0 to 10^9
+     Length of the array will not exceed 10^4.
+     */
+    func totalHammingDistance(_ nums: [Int]) -> Int {
+        // Brute force goes time exceeded.
+//        func hammingDistance(_ a: Int, _ b: Int) -> Int {
+//            var xor = a ^ b, result = 0
+//            while xor != 0 {
+//                result += xor & 1
+//                xor >>= 1
+//            }
+//            return result
+//        }
+//
+//        var result = 0
+//        let dict = nums.reduce(into: [:]) { $0[$1, default: 0] += 1}, keys = [Int](dict.keys)
+//        for i in 0 ..< dict.count {
+//            for j in i + 1 ..< dict.count {
+//                result += hammingDistance(keys[i], keys[j]) * dict[keys[i]]! * dict[keys[j]]!
+//            }
+//        }
+//        return result
+        
+        // The total hamming distance is equal to the sum of products of the count of `0` and `1` of same bit in all elements.
+        // For "Elements of the given array are in the range of 0 to 10^9", it means the count of bits is less than 32.
+        var count = [Int](repeating: 0, count: 32)
+        // Travel the bits of each num, count `1` of each bit.
+        for num in nums {
+            var t = 1
+            for i in 0 ..< 32 {
+                if num & t > 0 {
+                    count[i] += 1
+                }
+                t <<= 1
+            }
+        }
+        var result = 0
+        // Every pair of `0` and `1` in the same bit will contribute one hamming distance.
+        // So total hamming distance is the product of count of `0` and `1` from the same position.
+        for i in 0 ..< 32 {
+            result += count[i] * (nums.count - count[i])
+        }
+        return result
+    }
 }
