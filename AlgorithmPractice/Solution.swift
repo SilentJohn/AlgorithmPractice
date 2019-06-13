@@ -163,4 +163,92 @@ class Solution {
         }
         return max
     }
+    /**
+     LeetCode 840
+     A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to 9 such that each row, column, and both diagonals all have the same sum.
+     
+     Given an grid of integers, how many 3 x 3 "magic square" subgrids are there?  (Each subgrid is contiguous).
+     
+       
+     
+     Example 1:
+     
+     Input: [[4,3,8,4],
+             [9,5,1,9],
+             [2,7,6,2]]
+     Output: 1
+     Explanation:
+     The following subgrid is a 3 x 3 magic square:
+     438
+     951
+     276
+     
+     while this one is not:
+     384
+     519
+     762
+     
+     In total, there is only one magic square inside the given grid.
+     Note:
+     
+     1 <= grid.length <= 10
+     1 <= grid[0].length <= 10
+     0 <= grid[i][j] <= 15
+     */
+    func numMagicSquaresInside(_ grid: [[Int]]) -> Int {
+        // Brute force
+        func is3Magic(_ matrix: [[Int]]) -> Bool {
+            guard matrix.count == 3, matrix[0].count == 3 else {
+                return false
+            }
+            guard matrix[1][1] == 5 else {
+                return false
+            }
+            let set = Set(matrix.flatMap { $0 })
+            guard set.count == 9 else {
+                return false
+            }
+            for i in set {
+                if i < 1 || i > 10 {
+                    return false
+                }
+            }
+            let row1 = matrix[0].reduce(0) { $0 + $1 }
+            let row2 = matrix[1].reduce(0) { $0 + $1 }
+            let row3 = matrix[2].reduce(0) { $0 + $1 }
+            
+            let column1 = matrix.reduce(0) { $0 + $1[0] }
+            let column2 = matrix.reduce(0) { $0 + $1[1] }
+            let column3 = matrix.reduce(0) { $0 + $1[2] }
+            
+            let diagonal = matrix.reduce(0) { $0 + $1[matrix.firstIndex(of: $1)!] }
+            let backDiagonal = matrix.reduce(0) { $0 + $1[matrix.count - 1 - matrix.firstIndex(of: $1)!] }
+            
+            let array = [row1, row2, row3, column1, column2, column3, diagonal, backDiagonal]
+            return array.max() == array.min()
+        }
+        
+        func slice(of array: [[Int]], index: (row: Int, column: Int), size: Int) -> [[Int]] {
+            var result = [[Int]]()
+            for i in index.row ..< index.row + size {
+                result.append([Int](array[i][index.column ..< index.column + size]))
+            }
+            return result
+        }
+        
+        let n = grid.count
+        guard n >= 3, grid[0].count >= 3 else {
+            return 0
+        }
+        var count = 0
+        for i in 0 ... n - 3 {
+            for j in 0 ... n - 3 {
+                let sub = slice(of: grid, index: (i, j), size: 3)
+                if is3Magic([[Int]](sub)) {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
 }
