@@ -96,5 +96,6 @@ class AlgorithmTests: XCTestCase {
         XCTAssert(solution.repeatedSubstringPattern("abab"))
         XCTAssertFalse(solution.repeatedSubstringPattern("aba"))
         XCTAssert(solution.repeatedSubstringPattern("abcabcabcabc"))
+        XCTAssertFalse(solution.repeatedSubstringPattern("abac"))
     }
 }

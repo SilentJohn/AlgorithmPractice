@@ -339,13 +339,30 @@ class Solution {
         guard let fisrt = s.first else {
             return false
         }
+        
         for (i, c) in s[s.index(after: s.startIndex) ..< s.endIndex].enumerated() {
-            var sub: String? = nil
-            if c == fisrt {
-                
+            // Find the next character which matches the first one,
+            // then challenge the length of s, compare string which is initialized by repeating the substring to current index.
+            if c == fisrt, s.count % (i + 1) == 0, String(repeating: String(s[..<s.index(s.startIndex, offsetBy: (i + 1))]), count: s.count / (i + 1)) == s  {
+                return true
             }
         }
-        
         return false
+        /*
+         看了评论区python一行代码高赞解答，理解了一下，给大家参考。
+         
+         一个字符串如果符合要求，则该字符串至少由2个子串组成。例：b b / abc abc
+         
+         s+s。以后，则该字符串至少由4个子串组成 bb+bb / abcabc+abcabc
+         
+         截去首尾各一个字符s[1:-1] （注：只截一个是为了判断类似本例，重复子串长度为1的情况。当重复子串长度大于1时，任意截去首尾小于等于重复子字符串长度都可）
+         
+         由于s+s组成的4个重复子串被破坏了首尾2个，则只剩下中间两个 b bb b。此时在判断中间两个子串组成是否等于s，若是，则成立。
+         
+         作者：caorunjia
+         */
+//        let ss = s + s
+//        return ss[ss.index(after: ss.startIndex)..<ss.index(before: s.endIndex)].range(of: s) != nil
+        // Swift 这个解法超时了
     }
 }
