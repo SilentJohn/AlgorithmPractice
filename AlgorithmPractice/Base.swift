@@ -162,3 +162,44 @@ public class TreeNode {
         self.right = nil
     }
 }
+
+/// 构造树
+extension TreeNode {
+    /// Build a tree from a level-traversal array
+    ///
+    /// - Parameters:
+    ///   - values: A level-traversal array
+    /// - Returns: The root of the result tree
+    class func buildTree(_ values: [Int?]) -> TreeNode? {
+        guard let rootValue = values[0] else {
+            return nil
+        }
+        // current root
+        let root = TreeNode(rootValue)
+        var queue = [root], i = 1, isLeft = true
+        while i < values.count, !queue.isEmpty {
+            let parent = queue.first!
+            let value = values[i], node = value == nil ? nil : TreeNode(value!)
+            if isLeft {
+                parent.left = node
+            } else {
+                parent.right = node
+                queue.removeFirst()
+            }
+            if node != nil {
+                queue.append(node!)
+            }
+            isLeft = !isLeft
+            i += 1
+        }
+        
+        return root
+    }
+}
+
+extension TreeNode : CustomStringConvertible {
+    // TODO: - description待完善
+    public var description: String {
+        return "value = \(val) " + "left = " + (left == nil ? "nil" : left!.description) + " right = " + (right == nil ? "nil" : right!.description)
+    }
+}
