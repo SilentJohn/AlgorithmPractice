@@ -163,4 +163,206 @@ class Solution {
         }
         return max
     }
+    /**
+     LeetCode 840
+     A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to 9 such that each row, column, and both diagonals all have the same sum.
+     
+     Given an grid of integers, how many 3 x 3 "magic square" subgrids are there?  (Each subgrid is contiguous).
+     
+       
+     
+     Example 1:
+     
+     Input: [[4,3,8,4],
+             [9,5,1,9],
+             [2,7,6,2]]
+     Output: 1
+     Explanation:
+     The following subgrid is a 3 x 3 magic square:
+     438
+     951
+     276
+     
+     while this one is not:
+     384
+     519
+     762
+     
+     In total, there is only one magic square inside the given grid.
+     Note:
+     
+     1 <= grid.length <= 10
+     1 <= grid[0].length <= 10
+     0 <= grid[i][j] <= 15
+     */
+    func numMagicSquaresInside(_ grid: [[Int]]) -> Int {
+        // Brute force
+        func is3Magic(_ matrix: [[Int]]) -> Bool {
+            guard matrix.count == 3, matrix[0].count == 3 else {
+                return false
+            }
+            guard matrix[1][1] == 5 else {
+                return false
+            }
+            let set = Set(matrix.flatMap { $0 })
+            guard set.count == 9 else {
+                return false
+            }
+            for i in set {
+                if i < 1 || i > 10 {
+                    return false
+                }
+            }
+            let row1 = matrix[0].reduce(0) { $0 + $1 }
+            let row2 = matrix[1].reduce(0) { $0 + $1 }
+            let row3 = matrix[2].reduce(0) { $0 + $1 }
+            
+            let column1 = matrix.reduce(0) { $0 + $1[0] }
+            let column2 = matrix.reduce(0) { $0 + $1[1] }
+            let column3 = matrix.reduce(0) { $0 + $1[2] }
+            
+            let diagonal = matrix.reduce(0) { $0 + $1[matrix.firstIndex(of: $1)!] }
+            let backDiagonal = matrix.reduce(0) { $0 + $1[matrix.count - 1 - matrix.firstIndex(of: $1)!] }
+            
+            let array = [row1, row2, row3, column1, column2, column3, diagonal, backDiagonal]
+            return array.max() == array.min()
+        }
+        
+        func slice(of array: [[Int]], index: (row: Int, column: Int), size: Int) -> [[Int]] {
+            var result = [[Int]]()
+            for i in index.row ..< index.row + size {
+                result.append([Int](array[i][index.column ..< index.column + size]))
+            }
+            return result
+        }
+        
+        let n = grid.count
+        guard n >= 3, grid[0].count >= 3 else {
+            return 0
+        }
+        var count = 0
+        for i in 0 ... n - 3 {
+            for j in 0 ... n - 3 {
+                let sub = slice(of: grid, index: (i, j), size: 3)
+                if is3Magic([[Int]](sub)) {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
+    
+    /**
+     LeetCode 477. Total Hamming Distance
+     The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+     
+     Now your job is to find the total Hamming distance between all pairs of the given numbers.
+     
+     Example:
+     
+     Input: 4, 14, 2
+     
+     Output: 6
+     
+     Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just
+     showing the four bits relevant in this case). So the answer will be:
+     HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
+     Note:
+     
+     Elements of the given array are in the range of 0 to 10^9
+     Length of the array will not exceed 10^4.
+     */
+    func totalHammingDistance(_ nums: [Int]) -> Int {
+        // Brute force goes time exceeded.
+//        func hammingDistance(_ a: Int, _ b: Int) -> Int {
+//            var xor = a ^ b, result = 0
+//            while xor != 0 {
+//                result += xor & 1
+//                xor >>= 1
+//            }
+//            return result
+//        }
+//
+//        var result = 0
+//        let dict = nums.reduce(into: [:]) { $0[$1, default: 0] += 1}, keys = [Int](dict.keys)
+//        for i in 0 ..< dict.count {
+//            for j in i + 1 ..< dict.count {
+//                result += hammingDistance(keys[i], keys[j]) * dict[keys[i]]! * dict[keys[j]]!
+//            }
+//        }
+//        return result
+        
+        // The total hamming distance is equal to the sum of products of the count of `0` and `1` of same bit in all elements.
+        // For "Elements of the given array are in the range of 0 to 10^9", it means the count of bits is less than 32.
+        var count = [Int](repeating: 0, count: 32)
+        // Travel the bits of each num, count `1` of each bit.
+        for num in nums {
+            var t = 1
+            for i in 0 ..< 32 {
+                if num & t > 0 {
+                    count[i] += 1
+                }
+                t <<= 1
+            }
+        }
+        var result = 0
+        // Every pair of `0` and `1` in the same bit will contribute one hamming distance.
+        // So total hamming distance is the product of count of `0` and `1` from the same position.
+        for i in 0 ..< 32 {
+            result += count[i] * (nums.count - count[i])
+        }
+        return result
+    }
+    
+    /**
+     LeetCode 459. Repeated Substring Pattern
+     Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
+     
+       
+     
+     Example 1:
+     
+     Input: "abab"
+     Output: True
+     Explanation: It's the substring "ab" twice.
+     Example 2:
+     
+     Input: "aba"
+     Output: False
+     Example 3:
+     
+     Input: "abcabcabcabc"
+     Output: True
+     Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
+     */
+    func repeatedSubstringPattern(_ s: String) -> Bool {
+        guard let fisrt = s.first else {
+            return false
+        }
+        
+        for (i, c) in s[s.index(after: s.startIndex) ..< s.endIndex].enumerated() {
+            // Find the next character which matches the first one,
+            // then challenge the length of s, compare string which is initialized by repeating the substring to current index.
+            if c == fisrt, s.count % (i + 1) == 0, String(repeating: String(s[..<s.index(s.startIndex, offsetBy: (i + 1))]), count: s.count / (i + 1)) == s  {
+                return true
+            }
+        }
+        return false
+        /*
+         看了评论区python一行代码高赞解答，理解了一下，给大家参考。
+         
+         一个字符串如果符合要求，则该字符串至少由2个子串组成。例：b b / abc abc
+         
+         s+s。以后，则该字符串至少由4个子串组成 bb+bb / abcabc+abcabc
+         
+         截去首尾各一个字符s[1:-1] （注：只截一个是为了判断类似本例，重复子串长度为1的情况。当重复子串长度大于1时，任意截去首尾小于等于重复子字符串长度都可）
+         
+         由于s+s组成的4个重复子串被破坏了首尾2个，则只剩下中间两个 b bb b。此时在判断中间两个子串组成是否等于s，若是，则成立。
+         
+         作者：caorunjia
+         */
+//        let ss = s + s
+//        return ss[ss.index(after: ss.startIndex)..<ss.index(before: s.endIndex)].range(of: s) != nil
+        // Swift 这个解法超时了
+    }
 }

@@ -81,4 +81,21 @@ class AlgorithmTests: XCTestCase {
         XCTAssert(solution.maxSatisfied([1], [0], 1) == 1)
         XCTAssert(solution.maxSatisfied([2, 6, 6, 9], [0, 0, 1, 1], 1) == 17)
     }
+    
+    func testNumMagicSquaresInside() {
+        XCTAssert(solution.numMagicSquaresInside([[4,3,8,4],
+                                                  [9,5,1,9],
+                                                  [2,7,6,2]]) == 1)
+    }
+    
+    func testTotalHammingDistance() {
+        XCTAssert(solution.totalHammingDistance([4, 14, 2]) == 6)
+    }
+    
+    func testRepeatedSubstringPattern() {
+        XCTAssert(solution.repeatedSubstringPattern("abab"))
+        XCTAssertFalse(solution.repeatedSubstringPattern("aba"))
+        XCTAssert(solution.repeatedSubstringPattern("abcabcabcabc"))
+        XCTAssertFalse(solution.repeatedSubstringPattern("abac"))
+    }
 }
