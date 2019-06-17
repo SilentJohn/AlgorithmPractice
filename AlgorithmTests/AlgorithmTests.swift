@@ -120,4 +120,15 @@ class AlgorithmTests: XCTestCase {
             i += 1
         }
     }
+    
+    func testRotateRight() {
+        let list = List([1, 2, 3, 4, 5, 6])
+        _ = list.rotateRight(8)
+        var current = list.head, array = [5, 6, 1, 2, 3, 4], i = 0
+        while current != nil {
+            XCTAssert(current?.val == array[i])
+            current = current?.next
+            i += 1
+        }
+    }
 }
