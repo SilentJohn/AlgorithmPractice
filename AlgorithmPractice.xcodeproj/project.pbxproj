@@ -17,6 +17,8 @@
 		7E3B45B4225C9A6300823CDE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B45B3225C9A6300823CDE /* String.swift */; };
 		7E3B45B6225C9D5D00823CDE /* LRU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B45B5225C9D5D00823CDE /* LRU.swift */; };
 		7E3B45B82260909100823CDE /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B45B72260909000823CDE /* Base.swift */; };
+		890F673222B791B700A54397 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F673122B791B700A54397 /* Tree.swift */; };
+		890F673322B7951300A54397 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F673122B791B700A54397 /* Tree.swift */; };
 		893D9478229D9916001B78B1 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D9477229D9916001B78B1 /* Solution.swift */; };
 		893D9479229D9916001B78B1 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D9477229D9916001B78B1 /* Solution.swift */; };
 		893D947B229E82BC001B78B1 /* MyQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D947A229E82BC001B78B1 /* MyQueue.swift */; };
@@ -57,6 +59,7 @@
 		7E3B45B3225C9A6300823CDE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7E3B45B5225C9D5D00823CDE /* LRU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRU.swift; sourceTree = "<group>"; };
 		7E3B45B72260909000823CDE /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		890F673122B791B700A54397 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		893D9477229D9916001B78B1 /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
 		893D947A229E82BC001B78B1 /* MyQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueue.swift; sourceTree = "<group>"; };
 		893D947D22B68ACC001B78B1 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 				893D9477229D9916001B78B1 /* Solution.swift */,
 				893D947A229E82BC001B78B1 /* MyQueue.swift */,
 				893D947D22B68ACC001B78B1 /* List.swift */,
+				890F673122B791B700A54397 /* Tree.swift */,
 			);
 			path = AlgorithmPractice;
 			sourceTree = "<group>";
@@ -214,6 +218,7 @@
 				7E33E4DE22647F1D006CBB54 /* String.swift in Sources */,
 				893D947F22B68ACF001B78B1 /* List.swift in Sources */,
 				7E33E4AE22646F17006CBB54 /* AlgorithmTests.swift in Sources */,
+				890F673322B7951300A54397 /* Tree.swift in Sources */,
 				893D9479229D9916001B78B1 /* Solution.swift in Sources */,
 				7E33E4E022647F1D006CBB54 /* Base.swift in Sources */,
 				7E33E4DD22647F1D006CBB54 /* Sort.swift in Sources */,
@@ -229,6 +234,7 @@
 				7E3B45B4225C9A6300823CDE /* String.swift in Sources */,
 				893D947E22B68ACC001B78B1 /* List.swift in Sources */,
 				7E37E32022536E7300D090AA /* main.swift in Sources */,
+				890F673222B791B700A54397 /* Tree.swift in Sources */,
 				893D9478229D9916001B78B1 /* Solution.swift in Sources */,
 				7E3B45B82260909100823CDE /* Base.swift in Sources */,
 				7E37E32722536EB700D090AA /* Sort.swift in Sources */,

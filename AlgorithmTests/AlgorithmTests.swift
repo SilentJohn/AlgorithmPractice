@@ -110,7 +110,7 @@ class AlgorithmTests: XCTestCase {
         }
     }
     
-    func testThreshold() {
+    func testListThreshold() {
         let list = List([4, 5, 1, 2, 2, 1])
         _ = list.threshold(3)
         var current = list.head, array = [1, 2, 2, 1, 4, 5], i = 0
@@ -121,7 +121,7 @@ class AlgorithmTests: XCTestCase {
         }
     }
     
-    func testRotateRight() {
+    func testListRotateRight() {
         let list = List([1, 2, 3, 4, 5, 6])
         _ = list.rotateRight(8)
         var current = list.head, array = [5, 6, 1, 2, 3, 4], i = 0
@@ -130,5 +130,11 @@ class AlgorithmTests: XCTestCase {
             current = current?.next
             i += 1
         }
+    }
+    
+    func testTreeIsEqual() {
+        let lhs = TreeNode.buildTree([1, 2, 3, nil, 4, 5, nil])
+        let rhs = TreeNode.buildTree([1, 2, 3, nil, 4, 5, nil])
+        XCTAssert(TreeNode.isEqual(lhs: lhs, rhs: rhs))
     }
 }
