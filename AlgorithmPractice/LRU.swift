@@ -9,7 +9,7 @@
 import Foundation
 
 public class LRUCache {
-    var linkedList: LinkedList<[AnyHashable: Any]>
+    var linkedList: BiLinkedList<[AnyHashable: Any]>
     
     init() {
         linkedList = []

@@ -9,26 +9,26 @@
 import Foundation
 
 /// 节点
-public class Node<Element> {
+public class BiNode<Element> {
     var value: Element
-    weak var pre: Node?
-    var next: Node?
+    weak var pre: BiNode?
+    var next: BiNode?
     
     init(_ value: Element) {
         self.value = value
     }
 }
 
-public class LinkedList<Element>: ExpressibleByArrayLiteral {
-    fileprivate var head: Node<Element>?
-    fileprivate var tail: Node<Element>?
+public class BiLinkedList<Element>: ExpressibleByArrayLiteral {
+    fileprivate var head: BiNode<Element>?
+    fileprivate var tail: BiNode<Element>?
     fileprivate var countOfNodes = 0
     
     public required init(arrayLiteral elements: Element...) {
         for element in elements {
-            let node = Node(element)
+            let node = BiNode(element)
             guard head != nil else {
-                head = Node(element)
+                head = BiNode(element)
                 tail = self.head
                 continue
             }
@@ -41,9 +41,9 @@ public class LinkedList<Element>: ExpressibleByArrayLiteral {
     
     public init<S> (_ s: S) where S: Sequence, Element == S.Element {
         for element in s {
-            let node = Node(element)
+            let node = BiNode(element)
             guard head != nil else {
-                head = Node(element)
+                head = BiNode(element)
                 tail = self.head
                 continue
             }
@@ -56,8 +56,8 @@ public class LinkedList<Element>: ExpressibleByArrayLiteral {
 }
 
 // MARK: - 基本操作
-extension LinkedList {
-    func append(_ node: Node<Element>) {
+extension BiLinkedList {
+    func append(_ node: BiNode<Element>) {
         guard head != nil else {
             head = node
             tail = self.head
@@ -114,7 +114,7 @@ extension LinkedList {
 //    }
 //}
 
-extension LinkedList: Collection {
+extension BiLinkedList: Collection {
     public var count: Int {
         return countOfNodes
     }
@@ -134,7 +134,7 @@ extension LinkedList: Collection {
         return i + 1
     }
     
-    public subscript(position: Int) -> Node<Element> {
+    public subscript(position: Int) -> BiNode<Element> {
         let direction = position < count / 2
         var current = direction ? head : tail, index = direction ? startIndex : endIndex
         while position != index {
@@ -145,7 +145,7 @@ extension LinkedList: Collection {
     }
 }
 
-extension LinkedList: CustomStringConvertible where Element: CustomStringConvertible{
+extension BiLinkedList: CustomStringConvertible where Element: CustomStringConvertible{
     public var description: String {
         return reduce("", { $0 + "->" + $1.value.description })
     }
@@ -201,5 +201,32 @@ extension TreeNode : CustomStringConvertible {
     // TODO: - description待完善
     public var description: String {
         return "value = \(val) " + "left = " + (left == nil ? "nil" : left!.description) + " right = " + (right == nil ? "nil" : right!.description)
+    }
+}
+
+public class Node {
+    public var val: Int
+    public var next: Node?
+    public init(_ val: Int) {
+        self.val = val
+        self.next = nil
+    }
+}
+
+public class List {
+    public var head: Node?
+    
+    public init<S> (_ s: S) where S: Sequence, S.Element == Int {
+        var current: Node?
+        for element in s {
+            let node = Node(element)
+            guard head != nil else {
+                head = node
+                current = head
+                continue
+            }
+            current?.next = node
+            current = node
+        }
     }
 }

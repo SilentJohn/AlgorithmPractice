@@ -34,7 +34,7 @@ class AlgorithmTests: XCTestCase {
         }
     }
     
-    var linkedList: LinkedList<Int>?
+    var linkedList: BiLinkedList<Int>?
     
     func testLinkedListCreate() {
         linkedList = [1, 2, 3]
@@ -97,5 +97,27 @@ class AlgorithmTests: XCTestCase {
         XCTAssertFalse(solution.repeatedSubstringPattern("aba"))
         XCTAssert(solution.repeatedSubstringPattern("abcabcabcabc"))
         XCTAssertFalse(solution.repeatedSubstringPattern("abac"))
+    }
+    
+    func testListInit() {
+        let list = List([1, 2, 3, 4, 5, 6])
+        XCTAssert(list.head != nil)
+        var current = list.head, i = 1
+        while current != nil {
+            XCTAssert(current?.val == i)
+            current = current?.next
+            i += 1
+        }
+    }
+    
+    func testThreshold() {
+        let list = List([4, 5, 1, 2, 2, 1])
+        _ = list.threshold(3)
+        var current = list.head, array = [1, 2, 2, 1, 4, 5], i = 0
+        while current != nil {
+            XCTAssert(current?.val == array[i])
+            current = current?.next
+            i += 1
+        }
     }
 }

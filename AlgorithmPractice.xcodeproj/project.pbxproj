@@ -21,6 +21,8 @@
 		893D9479229D9916001B78B1 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D9477229D9916001B78B1 /* Solution.swift */; };
 		893D947B229E82BC001B78B1 /* MyQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D947A229E82BC001B78B1 /* MyQueue.swift */; };
 		893D947C229E82BC001B78B1 /* MyQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D947A229E82BC001B78B1 /* MyQueue.swift */; };
+		893D947E22B68ACC001B78B1 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D947D22B68ACC001B78B1 /* List.swift */; };
+		893D947F22B68ACF001B78B1 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D947D22B68ACC001B78B1 /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 		7E3B45B72260909000823CDE /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		893D9477229D9916001B78B1 /* Solution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
 		893D947A229E82BC001B78B1 /* MyQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQueue.swift; sourceTree = "<group>"; };
+		893D947D22B68ACC001B78B1 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,7 @@
 				7E3B45B72260909000823CDE /* Base.swift */,
 				893D9477229D9916001B78B1 /* Solution.swift */,
 				893D947A229E82BC001B78B1 /* MyQueue.swift */,
+				893D947D22B68ACC001B78B1 /* List.swift */,
 			);
 			path = AlgorithmPractice;
 			sourceTree = "<group>";
@@ -208,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E33E4DE22647F1D006CBB54 /* String.swift in Sources */,
+				893D947F22B68ACF001B78B1 /* List.swift in Sources */,
 				7E33E4AE22646F17006CBB54 /* AlgorithmTests.swift in Sources */,
 				893D9479229D9916001B78B1 /* Solution.swift in Sources */,
 				7E33E4E022647F1D006CBB54 /* Base.swift in Sources */,
@@ -222,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E3B45B4225C9A6300823CDE /* String.swift in Sources */,
+				893D947E22B68ACC001B78B1 /* List.swift in Sources */,
 				7E37E32022536E7300D090AA /* main.swift in Sources */,
 				893D9478229D9916001B78B1 /* Solution.swift in Sources */,
 				7E3B45B82260909100823CDE /* Base.swift in Sources */,
@@ -249,7 +255,7 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AlgorithmPractice";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = E72ZZ7293B;
+				DEVELOPMENT_TEAM = RP2MFPQH9Q;
 				INFOPLIST_FILE = AlgorithmTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -269,7 +275,7 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AlgorithmPractice";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = E72ZZ7293B;
+				DEVELOPMENT_TEAM = RP2MFPQH9Q;
 				INFOPLIST_FILE = AlgorithmTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -403,7 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E72ZZ7293B;
+				DEVELOPMENT_TEAM = RP2MFPQH9Q;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -415,7 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E72ZZ7293B;
+				DEVELOPMENT_TEAM = RP2MFPQH9Q;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
