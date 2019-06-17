@@ -137,4 +137,9 @@ class AlgorithmTests: XCTestCase {
         let rhs = TreeNode.buildTree([1, 2, 3, nil, 4, 5, nil])
         XCTAssert(TreeNode.isEqual(lhs: lhs, rhs: rhs))
     }
+    
+    func testTreeSymmetric() {
+        let tree = TreeNode.buildTree([1, 2, 2, 3, 4, 4, 3])
+        XCTAssert(tree!.symmetric)
+    }
 }
