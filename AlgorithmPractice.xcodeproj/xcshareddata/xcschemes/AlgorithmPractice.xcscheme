@@ -37,6 +37,11 @@
                BlueprintName = "AlgorithmTests"
                ReferencedContainer = "container:AlgorithmPractice.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AlgorithmTests/testLongestPalindromeSubseqPerformance()">
+               </Test>
+            </SkippedTests>
             <LocationScenarioReference
                identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
                referenceType = "1">

@@ -397,4 +397,90 @@ class Solution {
         }
         return String(result.reversed())
     }
+    
+    /**
+     LeetCode 6. ZigZag Conversion
+     The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+     
+     P   A   H   N
+     A P L S I I G
+     Y   I   R
+     And then read line by line: "PAHNAPLSIIGYIR"
+     
+     Write the code that will take a string and make this conversion given a number of rows:
+     
+     string convert(string s, int numRows);
+     Example 1:
+     
+     Input: s = "PAYPALISHIRING", numRows = 3
+     Output: "PAHNAPLSIIGYIR"
+     Example 2:
+     
+     Input: s = "PAYPALISHIRING", numRows = 4
+     Output: "PINALSIGYAHRPI"
+     Explanation:
+     
+     P     I    N
+     A   L S  I G
+     Y A   H R
+     P     I
+     */
+    func convert(_ s: String, _ numRows: Int) -> String {
+        guard numRows > 1 else {
+            return s
+        }
+        var lines = Array(repeating: [Character](), count: min(s.count, numRows))
+        var goingDown = false, current = 0
+        for c in s {
+            lines[current].append(c)
+            if current == 0 || current == numRows - 1 {
+                goingDown = !goingDown
+            }
+            current += goingDown ? 1 : -1
+        }
+        return String(lines.joined())
+    }
+    
+    /**
+     LeetCode 516. Longest Palindromic Subsequence
+     Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000.
+     
+     Example 1:
+     Input:
+     
+     "bbbab"
+     Output:
+     4
+     One possible longest palindromic subsequence is "bbbb".
+     Example 2:
+     Input:
+     
+     "cbbd"
+     Output:
+     2
+     One possible longest palindromic subsequence is "bb".
+     */
+    func longestPalindromeSubseq(_ s: String) -> Int {
+        // 注意：子序列可以不连续
+        // 动态规划，设l[i][j]表示第i位到第j位之间的回文序列长度，
+        // 如果s[i] == s[j]，则l[i][j] = l[i + 1][j - 1]
+        // 否则l[i][j] = max(l[i + 1][j]), l[i, j - 1])
+        // 返回l[0][s.count - 1]
+        let n = s.count, chars = s.map { $0 }
+        guard n > 1 else {
+            return 1
+        }
+        var l = Array(repeating: [Int](repeating: 0, count: n), count: n)
+        for i in (0..<n).reversed() {
+            l[i][i] = 1 // 初始化对角线为1，表示从i位到i位的回文序列长度为1
+            for j in (i + 1) ..< n {
+                if chars[i] == chars[j] {
+                    l[i][j] = l[i + 1][j - 1] + 2
+                } else {
+                    l[i][j] = max(l[i + 1][j], l[i][j - 1])
+                }
+            }
+        }
+        return l[0][n - 1]
+    }
 }

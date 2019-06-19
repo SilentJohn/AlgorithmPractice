@@ -162,4 +162,18 @@ class AlgorithmTests: XCTestCase {
     func testAddStrings() {
         XCTAssert(solution.addStrings("41", "59") == "100")
     }
+    
+    func testConvert() {
+        XCTAssert(solution.convert("PAYPALISHIRING", 3) == "PAHNAPLSIIGYIR")
+        XCTAssert(solution.convert("PAYPALISHIRING", 4) == "PINALSIGYAHRPI")
+        XCTAssert(solution.convert("AB", 1) == "AB")
+    }
+    
+    func testLongestPalindromeSubseq() {
+        XCTAssert(solution.longestPalindromeSubseq("bbbab") == 4)
+    }
+    
+    func testmMerge() {
+        XCTAssert(<#T##expression: Bool##Bool#>)
+    }
 }
