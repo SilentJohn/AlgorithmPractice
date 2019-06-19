@@ -174,6 +174,16 @@ class AlgorithmTests: XCTestCase {
     }
     
     func testmMerge() {
-        XCTAssert(<#T##expression: Bool##Bool#>)
+        XCTAssert(solution.merge([[1, 3], [2, 6], [8, 10], [15, 18]]) == [[1,6],[8,10],[15,18]])
+    }
+    
+    func testThreeSum() {
+        XCTAssert(Set(solution.threeSum([-1, 0, 1, 2, -1, -4])) == Set([
+            [-1, 0, 1],
+            [-1, -1, 2]
+            ]))
+        XCTAssert(Set(solution.threeSum([0, 0, 0])) == Set([
+            [0, 0, 0]
+            ]))
     }
 }

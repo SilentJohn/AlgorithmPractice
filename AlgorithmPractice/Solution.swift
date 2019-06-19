@@ -483,4 +483,98 @@ class Solution {
         }
         return l[0][n - 1]
     }
+    
+    /**
+     LeetCode 56. Merge Intervals
+     Given a collection of intervals, merge all overlapping intervals.
+     
+     Example 1:
+     
+     Input: [[1,3],[2,6],[8,10],[15,18]]
+     Output: [[1,6],[8,10],[15,18]]
+     Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+     Example 2:
+     
+     Input: [[1,4],[4,5]]
+     Output: [[1,5]]
+     Explanation: Intervals [1,4] and [4,5] are considered overlapping.
+     NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+     */
+    func merge(_ intervals: [[Int]]) -> [[Int]] {
+        let sorted = intervals.sorted { $0[0] < $1[0] }
+        var result = [[Int]]()
+        for interval in sorted {
+            if result.isEmpty || result.last![1] < interval[0] {
+                result.append(interval)
+            } else {
+                result[result.count - 1] = [result.last![0], max(result.last![1], interval[1])]
+            }
+        }
+        return result
+    }
+    
+    /**
+     LeetCode 15. 3Sum
+     Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+     
+     Note:
+     
+     The solution set must not contain duplicate triplets.
+     
+     Example:
+     
+     Given array nums = [-1, 0, 1, 2, -1, -4],
+     
+     A solution set is:
+     [
+     [-1, 0, 1],
+     [-1, -1, 2]
+     ]
+     */
+    func threeSum(_ nums: [Int]) -> [[Int]] {
+        // 固定一个值，其他两个值左右相向扫描
+        let n = nums.count
+        guard n > 2 else {
+            return []
+        }
+        let sorted = nums.sorted(by:<)
+        var result = [[Int]]()
+        guard sorted.first! <= 0 && sorted.last! >= 0 else {
+            return []
+        }
+        var i = 0
+        while i < n - 2 {
+            guard sorted[i] <= 0 else {
+                break
+            }
+            var left = i + 1, right = n - 1
+            while left < right {
+                // 三个数同号 i到right中间符号相同
+                guard sorted[i] <= 0, sorted[right] >= 0 else {
+                    break
+                }
+                let sum = sorted[i] + sorted[left] + sorted[right]
+                switch sum {
+                case 0:
+                    result.append([sorted[i], sorted[left], sorted[right]])
+                    fallthrough
+                case _ where sum <= 0:
+                    repeat {
+                        left += 1
+                    } while left < right && sorted[left - 1] == sorted[left]
+                case _ where sum > 0:
+                    repeat {
+                        right -= 1
+                    } while left < right && sorted[right + 1] == sorted[right]
+
+                default:
+                    continue
+                }
+            }
+            repeat {
+                i += 1
+            } while i < n && sorted[i - 1] == sorted[i]
+        }
+        return result
+    }
 }
