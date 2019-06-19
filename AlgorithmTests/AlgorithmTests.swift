@@ -139,7 +139,14 @@ class AlgorithmTests: XCTestCase {
     }
     
     func testTreeSymmetric() {
-        let tree = TreeNode.buildTree([1, 2, 2, 3, 4, 4, 3])
+        let tree = TreeNode.buildTree([1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5])
         XCTAssert(tree!.symmetric)
+    }
+    
+    func testTreeReversed() {
+        let tree = TreeNode.buildTree([1, 2, 3, 4, 5])
+        tree?.reversed()
+        let reversed = TreeNode.buildTree([1, 3, 2, nil, nil, 5, 4])
+        XCTAssert(TreeNode.isEqual(lhs: tree, rhs: reversed))
     }
 }
