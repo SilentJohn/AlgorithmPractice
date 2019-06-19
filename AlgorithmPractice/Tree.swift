@@ -48,4 +48,43 @@ extension TreeNode {
         self.left?.reversed()
         self.right?.reversed()
     }
+    
+    func levelTravel() -> [Int] {
+        var queue = [self], result = [Int]()
+        while !queue.isEmpty {
+            let node = queue.removeFirst()
+            result.append(node.val)
+            if let left = node.left {
+                queue.append(left)
+            }
+            if let right = node.right {
+                queue.append(right)
+            }
+        }
+        return result
+    }
+    
+    func zLevelTravel() -> [Int] {
+        var queue = [self], result = [Int](), direction = false
+        while !queue.isEmpty {
+            var level = [Int]()
+            for _ in 0..<queue.count {
+                let node = queue.removeFirst()
+                level.append(node.val)
+                if let left = node.left {
+                    queue.append(left)
+                }
+                if let right = node.right {
+                    queue.append(right)
+                }
+            }
+            if direction {
+                result.append(contentsOf: level)
+            } else {
+                result.append(contentsOf: level.reversed())
+            }
+            direction = !direction
+        }
+        return result
+    }
 }

@@ -200,7 +200,7 @@ extension TreeNode {
 extension TreeNode : CustomStringConvertible {
     // TODO: - description待完善
     public var description: String {
-        return "value = \(val) " + "left = " + (left == nil ? "nil" : left!.description) + " right = " + (right == nil ? "nil" : right!.description)
+        return levelTravel().description
     }
 }
 

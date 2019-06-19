@@ -149,4 +149,13 @@ class AlgorithmTests: XCTestCase {
         let reversed = TreeNode.buildTree([1, 3, 2, nil, nil, 5, 4])
         XCTAssert(TreeNode.isEqual(lhs: tree, rhs: reversed))
     }
+    
+    func testLevelTravel() {
+        let array = [1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5]
+        XCTAssert(array == TreeNode.buildTree(array)?.levelTravel())
+    }
+    func testZLevelTravel() {
+        let array = [1, 2, 3, 4, 5, 6, 7, 8]
+        XCTAssert([1, 2, 3, 7, 6, 5, 4, 8] == TreeNode.buildTree(array)?.zLevelTravel())
+    }
 }
