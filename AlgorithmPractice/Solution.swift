@@ -365,4 +365,36 @@ class Solution {
 //        return ss[ss.index(after: ss.startIndex)..<ss.index(before: s.endIndex)].range(of: s) != nil
         // Swift 这个解法超时了
     }
+    
+    /**
+     LeetCode 415 字符串相加
+     Given two non-negative integers num1 and num2 represented as string, return the sum of num1 and num2.
+     
+     Note:
+     
+     The length of both num1 and num2 is < 5100.
+     Both num1 and num2 contains only digits 0-9.
+     Both num1 and num2 does not contain any leading zero.
+     You must not use any built-in BigInteger library or convert the inputs to integer directly.
+     */
+    func addStrings(_ num1: String, _ num2: String) -> String {
+        let count = max(num1.count, num2.count)
+        var result = "", carry: UInt8 = 0
+        for i in 0..<count {
+            var digit1 = "0", digit2 = "0"
+            if i < num1.count {
+                digit1 = String(num1[num1.index(num1.endIndex, offsetBy: -i - 1)])
+            }
+            if i < num2.count {
+                digit2 = String(num2[num2.index(num2.endIndex, offsetBy: -i - 1)])
+            }
+            let sum = UInt8(digit1)! + UInt8(digit2)! + carry
+            carry = sum / 10
+            result.append(String(sum % 10))
+        }
+        if carry > 0 {
+            result.append(String(carry))
+        }
+        return String(result.reversed())
+    }
 }

@@ -158,4 +158,8 @@ class AlgorithmTests: XCTestCase {
         let array = [1, 2, 3, 4, 5, 6, 7, 8]
         XCTAssert([1, 2, 3, 7, 6, 5, 4, 8] == TreeNode.buildTree(array)?.zLevelTravel())
     }
+    
+    func testAddStrings() {
+        XCTAssert(solution.addStrings("41", "59") == "100")
+    }
 }
