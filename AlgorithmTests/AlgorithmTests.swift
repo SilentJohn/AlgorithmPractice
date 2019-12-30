@@ -186,4 +186,8 @@ class AlgorithmTests: XCTestCase {
             [0, 0, 0]
             ]))
     }
+    
+    func testSingleNum() {
+        XCTAssert(solution.singleNumber([4,1,2,1,2]) == 4)
+    }
 }
